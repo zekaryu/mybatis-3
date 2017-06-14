@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -61,12 +61,10 @@ public class ForEachSqlNode implements SqlNode {
     int i = 0;
     for (Object o : iterable) {
       DynamicContext oldContext = context;
-      if (first) {
+      if (first || separator == null) {
         context = new PrefixedContext(context, "");
-      } else if (separator != null) {
-        context = new PrefixedContext(context, separator);
       } else {
-          context = new PrefixedContext(context, "");
+        context = new PrefixedContext(context, separator);
       }
       int uniqueNumber = context.getUniqueNumber();
       // Issue #709 
@@ -87,6 +85,8 @@ public class ForEachSqlNode implements SqlNode {
       i++;
     }
     applyClose(context);
+    context.getBindings().remove(item);
+    context.getBindings().remove(index);
     return true;
   }
 
