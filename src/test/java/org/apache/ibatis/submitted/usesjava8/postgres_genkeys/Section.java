@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,11 +13,27 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.submitted.refcursor;
 
-import java.util.Map;
+package org.apache.ibatis.submitted.usesjava8.postgres_genkeys;
 
-public interface OrdersMapper {
-    void getOrder1(Map<String, Object> parameter);
-    void getOrder2(Map<String, Object> parameter);
+public class Section {
+  private Integer sectionId;
+
+  private String name;
+
+  public Integer getSectionId() {
+    return sectionId;
+  }
+
+  public void setSectionId(Integer sectionId) {
+    this.sectionId = sectionId;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
 }

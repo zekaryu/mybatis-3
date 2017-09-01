@@ -28,7 +28,7 @@
 
   <body>
     <section name="XML 映射配置文件">
-      <p>MyBatis 的配置文件包含了影响 MyBatis 行为甚深的设置（settings）和属性（properties）信息。文档的顶层结构如下：</p>
+      <p>MyBatis 的配置文件包含了会深深影响 MyBatis 行为的设置（settings）和属性（properties）信息。文档的顶层结构如下：</p>
 
       <ul>
         <li>
@@ -313,8 +313,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
                 safeRowBoundsEnabled
               </td>
               <td>
-                允许在嵌套语句中使用分页（RowBounds）。
-                If allow, set the false.
+                允许在嵌套语句中使用分页（RowBounds）。如果允许使用则设置为false。
               </td>
               <td>
                 true | false
@@ -328,8 +327,7 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
                 safeResultHandlerEnabled
               </td>
               <td>
-                允许在嵌套语句中使用分页（ResultHandler）。
-                If allow, set the false.
+                允许在嵌套语句中使用分页（ResultHandler）。如果允许使用则设置为false。
               </td>
               <td>
                 true | false
@@ -531,12 +529,12 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader, environ
                 configurationFactory
               </td>
               <td>
-                Specifies the class that provides an instance of <code>Configuration</code>.
-                The returned Configuration instance is used to load lazy properties of deserialized objects.
-                This class must have a method with a signature <code>static Configuration getConfiguration()</code>. (Since: 3.2.3)
+                指定一个提供<code>Configuration</code>实例的类.
+		这个被返回的Configuration实例是用来加载被反序列化对象的懒加载属性值.
+		这个类必须包含一个签名方法<code>static Configuration getConfiguration()</code>. (从 3.2.3 版本开始)
               </td>
               <td>
-                A type alias or fully qualified class name.
+                类型别名或者全类名.
               </td>
               <td>
                 Not set
@@ -1638,6 +1636,11 @@ SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(reader,properti
           <li><code>poolMaximumCheckoutTime</code> – 在被强制返回之前，池中连接被检出（checked out）时间，默认值：20000 毫秒（即 20 秒）
           </li>
           <li><code>poolTimeToWait</code> – 这是一个底层设置，如果获取连接花费的相当长的时间，它会给连接池打印状态日志并重新尝试获取一个连接（避免在误配置的情况下一直安静的失败），默认值：20000 毫秒（即 20 秒）。
+          </li>
+          <li><code>poolMaximumLocalBadConnectionTolerance</code> – 这是一个关于坏连接容忍度的底层设置，
+            作用于每一个尝试从缓存池获取连接的线程. 如果这个线程获取到的是一个坏的连接，那么这个数据源允许这
+            个线程尝试重新获取一个新的连接，但是这个重新尝试的次数不应该超过 <code>poolMaximumIdleConnections</code>
+            与 <code>poolMaximumLocalBadConnectionTolerance</code> 之和。 默认值：3 (Since: 3.4.5)
           </li>
           <li><code>poolPingQuery</code> – 发送到数据库的侦测查询，用来检验连接是否处在正常工作秩序中并准备接受请求。默认是“NO PING QUERY SET”，这会导致多数数据库驱动失败时带有一个恰当的错误消息。
           </li>

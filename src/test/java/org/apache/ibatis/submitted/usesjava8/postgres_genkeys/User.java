@@ -1,5 +1,5 @@
 /**
- *    Copyright 2009-2015 the original author or authors.
+ *    Copyright 2009-2017 the original author or authors.
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -13,27 +13,26 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.apache.ibatis.submitted.multiple_resultsets;
+package org.apache.ibatis.submitted.usesjava8.postgres_genkeys;
 
-public class OrderHeader {
+public class User {
+  private Integer userId;
 
-  private int orderId;
-  private String custName;
+  private String name;
 
-  public int getOrderId() {
-    return orderId;
+  public Integer getUserId() {
+    return userId;
   }
 
-  public void setOrderId(int orderId) {
-    this.orderId = orderId;
+  public void setUserId(Integer userId) {
+    this.userId = userId;
   }
 
-  public String getCustName() {
-    return custName;
+  public String getName() {
+    return name;
   }
 
-  public void setCustName(String custName) {
-    this.custName = custName;
+  public void setName(String name) {
+    this.name = name;
   }
-
 }
